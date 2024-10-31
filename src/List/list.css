@@ -1,0 +1,74 @@
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 2rem;
+  margin-left: 50px; /* To account for the hover menu */
+}
+
+.movie-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.rate{
+  color: coral;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+}
+
+.movie-info {
+  padding: 1rem;
+  background-color:bisque;
+}
+
+.movie-info h3 {
+  margin: 0;
+  color: #333;
+  font-size: 32px;
+}
+
+.movie-info p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.overview {
+  font-size: 0.9rem;
+  max-height: 100px;
+  overflow-y: auto;
+} 
+
+button{
+  border-radius: 10px;
+  background-color:rgb(223, 140, 81);
+}
+
+span{
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 0.25em 0.5em;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+
+}
+
+.progation button{
+  font-size: 18px;
+  border-radius: 10px;
+  background-color: #333;
+  cursor: pointer;
+}
