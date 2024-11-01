@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./list.css";
-import { LikeBtn } from "../components/LikeBtn";
-import { DislikeBtn } from "../components/DislikeBtn";
+// import { LikeBtn } from "../components/LikeBtn";
+// import { DislikeBtn } from "../components/DislikeBtn";
 import { MovieInfo } from "../components/MovieInfo";
 import { MovieImg } from "../components/MovieImg";
+import { PageBtn } from "../components/PageBtn";
+import { PreferBtn } from "../components/PreferBtn";
 
-function List({ liked, setLiked, disLiked, setDisLiked }) {
+function List({ liked, setLiked, disliked, setDisliked }) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,23 +26,33 @@ function List({ liked, setLiked, disLiked, setDisLiked }) {
     fetchMovies();
   }, [currentPage]);
 
-  const handlePreviousPage = () => {
-    setCurrentPage((previous) => previous - 1);
-  };
+  // const handlePreviousPage = () => {
+  //   setCurrentPage((previous) => previous - 1);
+  // };
 
-  const handleNextPage = () => {
-    setCurrentPage((previous) => previous + 1);
-  };
+  // const handleNextPage = () => {
+  //   setCurrentPage((previous) => previous + 1);
+  // };
 
   return (
     <>
       <h1>Popular Movies</h1>
       <div className="propagation">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+        {/* <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           Previous
-        </button>
+        </button> */}
+        <PageBtn
+          type="prev"
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
         <span>{currentPage}</span>
-        <button onClick={handleNextPage}>Next</button>
+        {/* <button onClick={handleNextPage}>Next</button> */}
+        <PageBtn
+          type="next"
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
       <div className="movie-container">
         {movies.map((movie) => (
@@ -48,12 +60,10 @@ function List({ liked, setLiked, disLiked, setDisLiked }) {
             <MovieImg movie={movie} />
             <div className="movie-info">
               <MovieInfo movie={movie} />
-              <LikeBtn movie={movie} liked={liked} setLiked={setLiked} />
-              <DislikeBtn
-                movie={movie}
-                disLiked={disLiked}
-                setDisLiked={setDisLiked}
-              />
+              <PreferBtn type = "liked" movie={movie} liked={liked} setLiked={setLiked} disliked={disliked}
+                setDisliked={setDisliked}/>
+              <PreferBtn type = "disliked" movie={movie} liked={liked} setLiked={setLiked} disliked={disliked}
+                setDisliked={setDisliked}/>
             </div>
           </div>
         ))}

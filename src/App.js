@@ -10,7 +10,7 @@ import Blocked from "./Blocked/blocked"
 function App() {
   const [isVisible, setIsVisible] = useState(false);
   const [liked, setLiked] = useState([]);
-  const [disLiked, setDisLiked] = useState([]);
+  const [disliked, setDisliked] = useState([]);
 
   return (
     <>
@@ -43,9 +43,9 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/list" element={<List liked={liked} setLiked={setLiked} disLiked={disLiked} setDisLiked={setDisLiked} />} />
+          <Route path="/list" element={<List liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
           <Route path="/liked" element={<Liked liked={liked} setLiked={setLiked} />} />
-          <Route path="/blocked" element={<Blocked disLiked={disLiked} setDisLiked={setDisLiked} />} />
+          <Route path="/blocked" element={<Blocked disliked={disliked} setDisliked={setDisliked} />} />
         </Routes>
       </BrowserRouter>
     </>

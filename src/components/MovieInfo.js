@@ -4,7 +4,6 @@ function getColor(vote) {
     return "green";
   }
   if (vote >= 5 && vote < 8) {
-    // return "yellow";
     return "orange";
   } else {
     return "red";
@@ -19,7 +18,6 @@ export function MovieInfo({ movie }) {
         Rating: {movie.vote_average.toFixed(1)}
       </p>
       <p>Release Date: {movie.release_date}</p>
-      <p className="overview">{movie.overview}</p>
     </>
   );
 }
