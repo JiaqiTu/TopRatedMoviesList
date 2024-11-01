@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "../List/list.css";
+// import "../List/list.css";
+import "../Liked/liked.css";
 import { MovieImg } from "../components/MovieImg";
 import { MovieInfo } from "../components/MovieInfo";
 
