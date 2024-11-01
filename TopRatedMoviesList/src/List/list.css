@@ -49,20 +49,3 @@
   max-height: 100px;
   overflow-y: auto;
 } 
-
-.propagation span{
-  font-weight: bold;
-  box-sizing: border-box;
-  padding: 0.25em 0.5em;
-  border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-}
-
-.propagation button{
-  font-size: 18px;
-  border-radius: 10px;
-  background-color: #333;
-  cursor: pointer;
-}

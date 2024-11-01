@@ -7,14 +7,14 @@ import { MovieImg } from "../components/MovieImg";
 
 function List({ liked, setLiked, disLiked, setDisLiked }) {
   const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const url =
+    "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2";
 
   useEffect(() => {
     const fetchMovies = async (props) => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&page=${currentPage}`
-        );
+        const response = await fetch(url);
         const data = await response.json();
         setMovies(data.results);
       } catch (error) {
@@ -22,26 +22,21 @@ function List({ liked, setLiked, disLiked, setDisLiked }) {
       }
     };
     fetchMovies();
-  }, [currentPage]);
-
-  const handlePreviousPage = () => {
-    setCurrentPage((previous) => previous - 1);
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((previous) => previous + 1);
-  };
+    function getPagedMovies(response, data) {
+      if (data.results.length !== 0) {
+        const nextPageUrl = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&page=${
+          data.page + 1
+        }`;
+        const response = fetch(nextPageUrl);
+        const nextData = response.json();
+        setMovies([...movies, ...nextData.results]);
+      }
+    }
+  }, []);
 
   return (
     <>
       <h1>Popular Movies</h1>
-      <div className="propagation">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <span>{currentPage}</span>
-        <button onClick={handleNextPage}>Next</button>
-      </div>
       <div className="movie-container">
         {movies.map((movie) => (
           <div key={movie.id} className="movie-card">
