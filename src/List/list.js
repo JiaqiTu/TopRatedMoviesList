@@ -1,14 +1,18 @@
-import React, { useEffect, useState, PaginationControls } from "react";
+import React, { useEffect, useState } from "react";
 import "./list.css";
+// import { LikeBtn } from "../components/LikeBtn";
+// import { DislikeBtn } from "../components/DislikeBtn";
+import { MovieInfo } from "../components/MovieInfo";
+import { MovieImg } from "../components/MovieImg";
+import { PageBtn } from "../components/PageBtn";
+import { PreferBtn } from "../components/PreferBtn";
 
-function List() {
+function List({ liked, setLiked, disliked, setDisliked, search, setSearch }) {
   const [movies, setMovies] = useState([]);
-  const [liked, setLiked] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const url =
-    "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2";
+
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovies = async (props) => {
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&page=${currentPage}`
@@ -22,64 +26,57 @@ function List() {
     fetchMovies();
   }, [currentPage]);
 
-  const handleNextPage = () => {
-    setCurrentPage((previousPage) => previousPage + 1);
-  };
+  // const handlePreviousPage = () => {
+  //   setCurrentPage((previous) => previous - 1);
+  // };
 
-  const handlePreviousPage = () => {
-    setCurrentPage((previousPage) => previousPage - 1);
-  };
-
-  function getColor(vote) {
-    if (vote >= 8) {
-      return "green";
-    }
-    if (vote >= 5 && vote < 8) {
-      return "orange";
-    } else {
-      return "red";
-    }
-  }
-
-  const handleLikedMovie = () => {
-    const likedMovie = {
-      id: movies[0].id,
-      title: movies[0].title,
-      liked: true,
-    };
-    setMovies([likedMovie, ...movies]);
-  };
+  // const handleNextPage = () => {
+  //   setCurrentPage((previous) => previous + 1);
+  // };
 
   return (
     <>
       <h1>Popular Movies</h1>
-      <div className="progation">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      <div className="propagation">
+        {/* <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           Previous
-        </button>
+        </button> */}
+        <PageBtn
+          type="prev"
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
         <span>{currentPage}</span>
-        <button onClick={handleNextPage}>Next</button>
+        {/* <button onClick={handleNextPage}>Next</button> */}
+        <PageBtn
+          type="next"
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+        <input className="SeachBox" type="text" placeholder="Search Movies" />
       </div>
       <div className="movie-container">
         {movies.map((movie) => (
           <div key={movie.id} className="movie-card">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              className="movie-poster"
-            />
+            <MovieImg movie={movie} />
             <div className="movie-info">
-              <h3>{movie.title}</h3>
-              <p
-                className="rate"
-                style={{ color: getColor(movie.vote_average) }}
-              >
-                Rating: {movie.vote_average.toFixed(1)}
-              </p>
-              <p>Release Date: {movie.release_date}</p>
-              <p className="overview">{movie.overview}</p>
-              <button>Like</button>
-              <button>Dislike</button>
+              <MovieInfo movie={movie} />
+              <PreferBtn
+                type="liked"
+                movie={movie}
+                liked={liked}
+                setLiked={setLiked}
+                disliked={disliked}
+                setDisliked={setDisliked}
+              />
+              <PreferBtn
+                type="disliked"
+                movie={movie}
+                liked={liked}
+                setLiked={setLiked}
+                disliked={disliked}
+                setDisliked={setDisliked}
+              />
             </div>
           </div>
         ))}

@@ -1,3 +1,8 @@
+body{
+  background-image: url("https://images6.alphacoders.com/135/1351738.jpeg");
+  color: white;
+}
+
 .movie-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -25,6 +30,7 @@
 .movie-poster {
   width: 100%;
   height: auto;
+  background-size: cover;
 }
 
 .movie-info {
@@ -50,12 +56,14 @@
   overflow-y: auto;
 } 
 
-button{
-  border-radius: 10px;
-  background-color:rgb(223, 140, 81);
+.propagation{
+ padding: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
 
-span{
+.propagation span{
   font-weight: bold;
   box-sizing: border-box;
   padding: 0.25em 0.5em;
@@ -63,12 +71,15 @@ span{
   border-radius: 5px;
   color: white;
   cursor: pointer;
-
 }
 
-.progation button{
-  font-size: 18px;
+.propagation button{
+  font-size: 22px;
   border-radius: 10px;
   background-color: #333;
   cursor: pointer;
+}
+.SeachBox{
+  border-radius: 5px;
+  height: 22px;
 }
