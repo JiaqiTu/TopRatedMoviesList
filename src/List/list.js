@@ -8,6 +8,7 @@ import { MovieImg } from "../components/MovieImg";
 function List({ liked, setLiked, disLiked, setDisLiked }) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async (props) => {
@@ -31,7 +32,13 @@ function List({ liked, setLiked, disLiked, setDisLiked }) {
   const handleNextPage = () => {
     setCurrentPage((previous) => previous + 1);
   };
+  const openModal = (movie) => {
+    setSelectedMovie(movie);
+  };
 
+  const closeModal = () => {
+    setSelectedMovie(null);
+  };
   return (
     <>
       <h1>Popular Movies</h1>
@@ -45,7 +52,7 @@ function List({ liked, setLiked, disLiked, setDisLiked }) {
       <div className="movie-container">
         {movies.map((movie) => (
           <div key={movie.id} className="movie-card">
-            <MovieImg movie={movie} />
+            <MovieImg movie={movie} onClick={() => openModal(movie)} />
             <div className="movie-info">
               <MovieInfo movie={movie} />
               <LikeBtn movie={movie} liked={liked} setLiked={setLiked} />
@@ -58,6 +65,28 @@ function List({ liked, setLiked, disLiked, setDisLiked }) {
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {selectedMovie && (
+        <div className="modal" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+              alt={selectedMovie.title}
+              className="modal-image"
+            />
+            <div className="modal-info">
+              <h2>{selectedMovie.title}</h2>
+              <p>{selectedMovie.overview}</p>
+              <p>Release Date: {selectedMovie.release_date}</p>
+              <p>Rating: {selectedMovie.vote_average}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
