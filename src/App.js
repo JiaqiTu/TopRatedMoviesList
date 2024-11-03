@@ -44,8 +44,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/list" element={<List liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
-          <Route path="/liked" element={<Liked liked={liked} setLiked={setLiked} />} />
-          <Route path="/blocked" element={<Blocked disliked={disliked} setDisliked={setDisliked} />} />
+          <Route path="/liked" element={<Liked liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
+          <Route path="/blocked" element={<Blocked liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
         </Routes>
       </BrowserRouter>
     </>

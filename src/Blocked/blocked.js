@@ -1,8 +1,9 @@
 import "../List/list.css";
 import { MovieImg } from "../components/MovieImg";
 import { MovieInfo } from "../components/MovieInfo";
+import { PreferBtn } from "../components/PreferBtn";
 
-function Blocked({ disliked, setDisliked }) {
+function Blocked({ liked, setLiked, disliked, setDisliked }) {
   const handleDelete = (id) => {
     setDisliked(disliked.filter((movie) => movie.id !== id));
   };
@@ -14,6 +15,8 @@ function Blocked({ disliked, setDisliked }) {
           <div className="movie-info">
             <MovieInfo movie={movie} />
             <button onClick={() => handleDelete(movie.id)}>Delete</button>
+            <PreferBtn type = "liked" movie={movie} liked={liked} setLiked={setLiked} disliked={disliked}
+                setDisliked={setDisliked}/>
           </div>
         </div>
       ))}
