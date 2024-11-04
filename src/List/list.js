@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./list.css";
-// import { LikeBtn } from "../components/LikeBtn";
-// import { DislikeBtn } from "../components/DislikeBtn";
 import { MovieInfo } from "../components/MovieInfo";
 import { MovieImg } from "../components/MovieImg";
 import { PageBtn } from "../components/PageBtn";
