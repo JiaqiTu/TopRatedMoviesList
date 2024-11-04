@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./Home/home";
 import List from "./List/list";
-import Liked from "./Liked/liked"
-import Blocked from "./Blocked/blocked"
+import Liked from "./Liked/liked";
+import Blocked from "./Blocked/blocked";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,9 +43,39 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/list" element={<List liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
-          <Route path="/liked" element={<Liked liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
-          <Route path="/blocked" element={<Blocked liked={liked} setLiked={setLiked} disliked={disliked} setDisliked={setDisliked} />} />
+          <Route
+            path="/list"
+            element={
+              <List
+                liked={liked}
+                setLiked={setLiked}
+                disliked={disliked}
+                setDisliked={setDisliked}
+              />
+            }
+          />
+          <Route
+            path="/liked"
+            element={
+              <Liked
+                liked={liked}
+                setLiked={setLiked}
+                disliked={disliked}
+                setDisliked={setDisliked}
+              />
+            }
+          />
+          <Route
+            path="/blocked"
+            element={
+              <Blocked
+                liked={liked}
+                setLiked={setLiked}
+                disliked={disliked}
+                setDisliked={setDisliked}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
