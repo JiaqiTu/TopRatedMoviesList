@@ -7,16 +7,21 @@ import { MovieImg } from "../components/MovieImg";
 import { PageBtn } from "../components/PageBtn";
 import { PreferBtn } from "../components/PreferBtn";
 
-function List({ liked, setLiked, disliked, setDisliked, search, setSearch }) {
+function List({ liked, setLiked, disliked, setDisliked }) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchMovies = async (props) => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&page=${currentPage}`
-        );
+        let url;
+        if (search) {
+          url = `https://api.themoviedb.org/3/search/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&query=${search}&page=${currentPage}`;
+        } else {
+          url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&page=${currentPage}`;
+        }
+        const response = await fetch(url);
         const data = await response.json();
         setMovies(data.results);
       } catch (error) {
@@ -24,15 +29,11 @@ function List({ liked, setLiked, disliked, setDisliked, search, setSearch }) {
       }
     };
     fetchMovies();
-  }, [currentPage]);
+  }, [currentPage, search]);
 
-  // const handlePreviousPage = () => {
-  //   setCurrentPage((previous) => previous - 1);
-  // };
-
-  // const handleNextPage = () => {
-  //   setCurrentPage((previous) => previous + 1);
-  // };
+  const handleSearchBox = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <>
@@ -53,7 +54,13 @@ function List({ liked, setLiked, disliked, setDisliked, search, setSearch }) {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-        <input className="SeachBox" type="text" placeholder="Search Movies" />
+        <input
+          className="SeachBox"
+          type="text"
+          placeholder="Search Movies"
+          value={search}
+          onChange={handleSearchBox}
+        />
       </div>
       <div className="movie-container">
         {movies.map((movie) => (
