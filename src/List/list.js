@@ -6,6 +6,7 @@ import { MovieInfo } from "../components/MovieInfo";
 import { MovieImg } from "../components/MovieImg";
 import { PageBtn } from "../components/PageBtn";
 import { PreferBtn } from "../components/PreferBtn";
+import { SearchBox } from "../components/SearchBox";
 
 function List({ liked, setLiked, disliked, setDisliked }) {
   const [movies, setMovies] = useState([]);
