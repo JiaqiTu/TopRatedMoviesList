@@ -21,7 +21,8 @@ p{
   font-size: 24px;
   display: flex;
   align-items: center;
-  background-color: rgb(119, 92, 59);
+  background-image: url('https://i.redd.it/qsav2l5ias951.jpg'); 
+  background-size: cover;
 }
 
 .list {
@@ -33,4 +34,34 @@ p{
 
 .list li {
   margin: 5px 0;
+}
+
+a{
+  color: whitesmoke;
+}
+
+.back-top-buttom {
+  position: fixed;
+  bottom: 2rem;
+  right:2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(17, 11, 24);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  transition: 0.2s ease-out;
+}
+
+.back-top-buttom span{
+  color: #fff;
+  transition: 0.2s ease-out;
+}
+.back-top-buttom:hover {
+  background-color: rgb(208, 208, 233);
+}
+
+.back-top-buttom:hover span {
+  transform: translateY(-4px);
 }

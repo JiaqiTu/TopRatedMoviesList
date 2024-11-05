@@ -40,7 +40,11 @@ function App() {
             </ul>
           )}
         </nav>
-
+        <a href="#" class="back-top-buttom">
+          <span class="material-icons">
+            <i class="fa-solid fa-arrow-up">Back To TOP</i>
+          </span>
+        </a>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

@@ -1,3 +1,8 @@
+body{
+  background-image: url("https://images6.alphacoders.com/135/1351738.jpeg");
+  color: white;
+}
+
 .movie-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -50,22 +55,35 @@
   overflow-y: auto;
 }
 
-.propagation span {
+.propagation{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
+.propagation span{
   font-weight: bold;
   box-sizing: border-box;
   padding: 0.25em 0.5em;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
   color: white;
   cursor: pointer;
 }
 
-.propagation button {
-  font-size: 18px;
+.propagation button{
+  font-size: 22px;
   border-radius: 10px;
   background-color: #333;
   cursor: pointer;
 }
+
+.SeachBox{
+  border-radius: 5px;
+  height: 22px;
+}
+
 .modal {
   position: fixed;
   top: 0;
