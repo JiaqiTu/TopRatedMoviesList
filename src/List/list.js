@@ -14,7 +14,7 @@ function List({ liked, setLiked, disliked, setDisliked }) {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const fetchMovies = async (props) => {
+    const fetchMovies = async () => {
       try {
         let url;
         if (search) {
@@ -55,13 +55,7 @@ function List({ liked, setLiked, disliked, setDisliked }) {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-        <input
-          className="SeachBox"
-          type="text"
-          placeholder="Search Movies"
-          value={search}
-          onChange={handleSearchBox}
-        />
+        <SearchBox search={search} handleSearchBox={handleSearchBox} />
       </div>
       <div className="movie-container">
         {movies.map((movie) => (
