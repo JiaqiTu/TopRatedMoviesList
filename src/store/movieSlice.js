@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialSate = {
+const initialState = {
   movies: [],
-  SearchBox: "",
+  searchBox: "",
   currentPage: "1",
 };
 
 const movieSlice = createSlice({
   name: "movies",
-  initialSate,
+  initialState,
   reducers: {
     setMovies: (state, action) => {
       state.movies = action.payload;
     },
-    setSearchBox: (state, action) => {
-      state.SearchBox = action.payload;
+    setSearch: (state, action) => {
+      state.searchBox = action.payload;
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
