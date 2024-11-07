@@ -1,14 +1,18 @@
-import { useState } from "react";
-// import "../List/list.css";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../Liked/liked.css";
 import { MovieImg } from "../components/MovieImg";
 import { MovieInfo } from "../components/MovieInfo";
 import { PreferBtn } from "../components/PreferBtn";
+import { selectLiked, removeLiked } from "../store/likedSlice";
 
-function Liked({ liked, setLiked, disliked, setDisliked }) {
+function Liked() {
+  const dispatch = useDispatch();
+  const liked = useSelector(selectLiked); 
   const handleDelete = (id) => {
-    setLiked(liked.filter((movie) => movie.id !== id));
+    dispatch(removeLiked({ id }));  
   };
+
   return (
     <div className="movie-container">
       {liked.map((movie) => (
@@ -17,8 +21,7 @@ function Liked({ liked, setLiked, disliked, setDisliked }) {
           <div className="movie-info">
             <MovieInfo movie={movie} />
             <button onClick={() => handleDelete(movie.id)}>Delete</button>
-            <PreferBtn type = "disliked" movie={movie} liked={liked} setLiked={setLiked} disliked={disliked}
-                setDisliked={setDisliked}/>
+            <PreferBtn type="disliked" movie={movie} />
           </div>
         </div>
       ))}

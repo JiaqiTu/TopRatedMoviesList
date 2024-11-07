@@ -6,6 +6,8 @@ import Home from "./Home/home";
 import List from "./List/list";
 import Liked from "./Liked/liked";
 import Blocked from "./Blocked/blocked";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
