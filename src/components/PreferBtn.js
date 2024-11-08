@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLiked, addDisliked, selectLiked, selectDisliked } from "../store/likedSlice";
+import { addLiked, addDisliked, selectLiked, selectDisliked } from "../store/preferSlice";
 
 export function PreferBtn({ type, movie }) {
   const dispatch = useDispatch();

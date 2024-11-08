@@ -59,6 +59,13 @@ function List() {
   return (
     <>
       <h1>Popular Movies</h1>
+      <input
+        type="text"
+        placeholder="Search movies..."
+        value={searchBox}
+        onChange={handleSearchBox}
+        className="search-box"
+      />
       <div className="propagation">
         <PageBtn
           type="prev"
@@ -70,13 +77,6 @@ function List() {
           type="next"
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-        />
-        <input
-          type="text"
-          placeholder="Search movies..."
-          value={searchBox}
-          onChange={handleSearchBox}
-          className="search-box"
         />
       </div>
       <div className="movie-container">
