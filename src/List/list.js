@@ -4,31 +4,45 @@ import { MovieInfo } from "../components/MovieInfo";
 import { MovieImg } from "../components/MovieImg";
 import { PageBtn } from "../components/PageBtn";
 import { PreferBtn } from "../components/PreferBtn";
+import { useDispatch, useSelector } from "react-redux";
+import { SearchBox } from "../components/SearchBox";
 
-function List({ liked, setLiked, disliked, setDisliked }) {
+function List() {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [search, setSearch] = useState("");
+  const [searchBox, setSearch] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedPage = localStorage.getItem("currentPage");
+    if (savedPage) {
+      setCurrentPage(Number(savedPage));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     const fetchMovies = async (props) => {
       try {
         let url;
-        if (search) {
-          url = `https://api.themoviedb.org/3/search/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&query=${search}&page=${currentPage}`;
+        if (searchBox) {
+          url = `https://api.themoviedb.org/3/search/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&query=${searchBox}&page=${currentPage}`;
         } else {
           url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c9408fb0c7908c0ad7066d910ff54c2&page=${currentPage}`;
         }
         const response = await fetch(url);
         const data = await response.json();
-        setMovies(data.results);
+        dispatch(setMovies(data.results));
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
     fetchMovies();
-  }, [currentPage, search]);
+  }, [currentPage, searchBox, dispatch]);
 
   const openModal = (movie) => {
     setSelectedMovie(movie);
@@ -41,6 +55,7 @@ function List({ liked, setLiked, disliked, setDisliked }) {
   const handleSearchBox = (e) => {
     setSearch(e.target.value);
   };
+
   return (
     <>
       <h1>Popular Movies</h1>
@@ -57,11 +72,11 @@ function List({ liked, setLiked, disliked, setDisliked }) {
           setCurrentPage={setCurrentPage}
         />
         <input
-          className="SeachBox"
           type="text"
-          placeholder="Search Movies"
-          value={search}
+          placeholder="Search movies..."
+          value={searchBox}
           onChange={handleSearchBox}
+          className="search-box"
         />
       </div>
       <div className="movie-container">
@@ -70,22 +85,8 @@ function List({ liked, setLiked, disliked, setDisliked }) {
             <MovieImg movie={movie} onClick={() => openModal(movie)} />
             <div className="movie-info">
               <MovieInfo movie={movie} />
-              <PreferBtn
-                type="liked"
-                movie={movie}
-                liked={liked}
-                setLiked={setLiked}
-                disliked={disliked}
-                setDisliked={setDisliked}
-              />
-              <PreferBtn
-                type="disliked"
-                movie={movie}
-                liked={liked}
-                setLiked={setLiked}
-                disliked={disliked}
-                setDisliked={setDisliked}
-              />
+              <PreferBtn type="liked" movie={movie} />
+              <PreferBtn type="disliked" movie={movie} />
             </div>
           </div>
         ))}

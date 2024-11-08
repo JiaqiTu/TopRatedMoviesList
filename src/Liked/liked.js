@@ -1,11 +1,16 @@
-import { useState } from "react";
-// import "../List/list.css";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../Liked/liked.css";
 import { MovieImg } from "../components/MovieImg";
 import { MovieInfo } from "../components/MovieInfo";
 import { PreferBtn } from "../components/PreferBtn";
+import { selectLiked, removeLiked } from "../store/likedSlice";
+import { useState } from "react";
 
-function Liked({ liked, setLiked, disliked, setDisliked }) {
+function Liked() {
+  const dispatch = useDispatch();
+  const liked = useSelector(selectLiked);
+
   // State for sorting option
   const [sortOption, setSortOption] = useState("title");
 
@@ -18,14 +23,14 @@ function Liked({ liked, setLiked, disliked, setDisliked }) {
     }
     return 0;
   });
-
   const handleDelete = (id) => {
-    setLiked(liked.filter((movie) => movie.id !== id));
+    dispatch(removeLiked({ id }));
   };
+
   return (
-    <div className="movie-container">
+    <>
       {/* Sort selector */}
-      <div className="sort-options">
+      <div className="sort-container">
         <select
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
@@ -35,24 +40,19 @@ function Liked({ liked, setLiked, disliked, setDisliked }) {
         </select>
       </div>
 
-      {sortedMovies.map((movie) => (
-        <div key={movie.id} className="movie-card">
-          <MovieImg movie={movie} />
-          <div className="movie-info">
-            <MovieInfo movie={movie} />
-            <button onClick={() => handleDelete(movie.id)}>Delete</button>
-            <PreferBtn
-              type="disliked"
-              movie={movie}
-              liked={liked}
-              setLiked={setLiked}
-              disliked={disliked}
-              setDisliked={setDisliked}
-            />
+      <div className="movie-container">
+        {sortedMovies.map((movie) => (
+          <div key={movie.id} className="movie-card">
+            <MovieImg movie={movie} />
+            <div className="movie-info">
+              <MovieInfo movie={movie} />
+              <button onClick={() => handleDelete(movie.id)}>Delete</button>
+              <PreferBtn type="disliked" movie={movie} />
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 
