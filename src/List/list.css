@@ -1,4 +1,4 @@
-body{
+body {
   background-image: url("https://images6.alphacoders.com/135/1351738.jpeg");
   color: white;
 }
@@ -30,7 +30,7 @@ body{
 .movie-poster {
   width: 100%;
   object-fit: cover;
-  aspect-ratio: 2 / 3; 
+  aspect-ratio: 2 / 3;
 }
 
 .movie-info {
@@ -42,7 +42,7 @@ body{
 .movie-info h3 {
   margin: 0;
   color: #333;
-  font-size: 20px;
+  font-size: 25px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -54,11 +54,12 @@ body{
   margin: 0.5rem 0;
 }
 
-.movie-info button{
+.movie-info button {
+  font-size: 18px;
   margin: 0 5px;
   cursor: pointer;
   border-radius: 15px;
-  background-color:red;
+  background-color: red;
 }
 
 .overview {
@@ -67,31 +68,31 @@ body{
   overflow-y: auto;
 }
 
-.propagation{
+.propagation {
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
- }
+}
 
-.propagation span{
+.propagation span {
   font-weight: bold;
   box-sizing: border-box;
   padding: 0.25em 0.5em;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   color: white;
   cursor: pointer;
 }
 
-.propagation button{
+.propagation button {
   font-size: 22px;
   border-radius: 10px;
   background-color: #d0cbd6;
   cursor: pointer;
 }
 
-.SeachBox{
+.SeachBox {
   border-radius: 5px;
   height: 22px;
 }
