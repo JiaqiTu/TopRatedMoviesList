@@ -170,3 +170,29 @@ body {
 .close:hover {
   color: #000;
 }
+
+/* Center container for the sort selector */
+.sort-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sort-container select {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.sort-container select:hover {
+  border-color: #f50303;
+}
+
+.sort-container select:focus {
+  border-color: #e60000;
+  box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
+}
