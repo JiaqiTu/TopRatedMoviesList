@@ -29,7 +29,8 @@ body{
 
 .movie-poster {
   width: 100%;
-  height: auto;
+  object-fit: cover;
+  aspect-ratio: 2 / 3; 
 }
 
 .movie-info {
@@ -41,13 +42,23 @@ body{
 .movie-info h3 {
   margin: 0;
   color: #333;
-  font-size: 32px;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie-info p {
   color: #666;
   font-size: 1rem;
   margin: 0.5rem 0;
+}
+
+.movie-info button{
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color:red;
 }
 
 .overview {

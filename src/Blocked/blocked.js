@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../List/list.css";
 import { MovieImg } from "../components/MovieImg";
 import { MovieInfo } from "../components/MovieInfo";
 import { PreferBtn } from "../components/PreferBtn";

@@ -13,7 +13,9 @@ function getColor(vote) {
 export function MovieInfo({ movie }) {
   return (
     <>
-      <h3>{movie.title}</h3>
+      <h3>
+        {movie.title}
+      </h3>
       <p className="rate" style={{ color: getColor(movie.vote_average) }}>
         Rating: {movie.vote_average.toFixed(1)}
       </p>
