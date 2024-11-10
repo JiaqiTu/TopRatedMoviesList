@@ -6,12 +6,15 @@ import { PageBtn } from "../components/PageBtn";
 import { PreferBtn } from "../components/PreferBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchBox } from "../components/SearchBox";
+import { Modal } from "../components/Modal";
+import { SortSelector } from "../components/SortSelector";
 
 function List() {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [searchBox, setSearch] = useState("");
+  const [sortedMovies, setSortedMovies] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,10 +51,6 @@ function List() {
     setSelectedMovie(movie);
   };
 
-  const closeModal = () => {
-    setSelectedMovie(null);
-  };
-
   const handleSearchBox = (e) => {
     setSearch(e.target.value);
   };
@@ -79,8 +78,12 @@ function List() {
           setCurrentPage={setCurrentPage}
         />
       </div>
+
+      {/* Sort selector */}
+      <SortSelector movies={movies} setSortedMovies={setSortedMovies} />
+
       <div className="movie-container">
-        {movies.map((movie) => (
+        {sortedMovies.map((movie) => (
           <div key={movie.id} className="movie-card">
             <MovieImg movie={movie} onClick={() => openModal(movie)} />
             <div className="movie-info">
@@ -94,24 +97,10 @@ function List() {
 
       {/* Modal */}
       {selectedMovie && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
-              alt={selectedMovie.title}
-              className="modal-image"
-            />
-            <div className="modal-info">
-              <h2>{selectedMovie.title}</h2>
-              <p>{selectedMovie.overview}</p>
-              <p>Release Date: {selectedMovie.release_date}</p>
-              <p>Rating: {selectedMovie.vote_average}</p>
-            </div>
-          </div>
-        </div>
+        <Modal
+          selectedMovie={selectedMovie}
+          setSelectedMovie={setSelectedMovie}
+        />
       )}
     </>
   );

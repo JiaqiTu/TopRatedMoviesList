@@ -173,9 +173,9 @@ body {
 
 /* Center container for the sort selector */
 .sort-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  position: absolute;
+  top: 180px;
+  right: 50px;
 }
 
 .sort-container select {
